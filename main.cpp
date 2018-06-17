@@ -10,13 +10,13 @@ using namespace std;
 class SerialNumberHelper
 {
     /** Self-defined Base System Representation
-     *  the Demo here show a 30-base system.
+     *  the Demo here shows a 30-base system.
      *  */
 private:
     static const vector<char> r; //{ 'q', 'w', 'e', '8', 's', '2', 'd', 'z',
     //'x', '9', 'c', '7', 'p', '5', 'k', '3', 'm', 'j', 'u', 'f', 'r', '4', 'v', 'y', 't', 'n', '6', 'b', 'g', 'h' };
 
-    /** Makeup Bit */
+    /** Separate bit */
     static const char b;
 
     /** Base */
@@ -44,12 +44,12 @@ public:
                 id /= binLen;
             }
             buf[charPos] = r[(int) (id % binLen)];
-            cout << "buf " << buf << endl;
+            cout << "Buf " << buf << endl;
             string str(buf, charPos + 1);
             reverse(str.begin(), str.end());
 
             cout << "Temp SerialID "<< str << endl;
-            //不够长度的自动随机补全
+            //Make-up bits
             if (str.size() < s) {
                 string sCode = "";
                 srand(time(NULL));
@@ -72,6 +72,7 @@ public:
     /// Generate ID with Code
 
 public:
+
     static long CodeToId(string code)
     {
         long res = 0L;
